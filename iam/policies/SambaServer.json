@@ -1,0 +1,35 @@
+{
+    "Statement": [
+        {
+            "Sid": "Efs",
+            "Effect": "Allow",
+            "Action": [
+                "elasticfilesystem:ClientMount",
+                "elasticfilesystem:ClientWrite",
+                "elasticfilesystem:DescribeMountTargets"
+            ],
+            "Resource": "arn:${Partition}:elasticfilesystem:${Region}:${Account}:file-system/${project_name}-${project_env}"
+        },
+        {
+            "Sid": "SessionManager",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:UpdateInstanceInformation",
+                "ssmmessages:CreateControlChannel",
+                "ssmmessages:CreateDataChannel",
+                "ssmmessages:OpenControlChannel",
+                "ssmmessages:OpenDataChannel"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "ParameterStore",
+            "Action": [
+                "ssm:GetParameter"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:${Partition}:ssm:${Region}:${Account}:parameter/${project_name}/${project_env}*"
+        }
+    ],
+    "Version": "2012-10-17"
+}

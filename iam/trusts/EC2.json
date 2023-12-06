@@ -1,0 +1,13 @@
+{
+    "Statement": [
+        {
+            "Action": "sts:AssumeRole",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ec2.${url_suffix}"
+            },
+            "Sid": "AssumeRoleEc2"
+        }
+    ],
+    "Version": "2012-10-17"
+}
